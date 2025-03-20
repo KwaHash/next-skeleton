@@ -1,10 +1,10 @@
-import  { type Metadata } from "next";
-import "./globals.css";
+import '@/styles/globals.scss'
+import { type Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "",
-  description: "",
-};
+  title: '',
+  description: '',
+}
 
 export default function RootLayout({
   children,
@@ -12,10 +12,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="jp">
+    <html lang='jp'>
       <body>
         {children}
       </body>
     </html>
-  );
+  )
 }
