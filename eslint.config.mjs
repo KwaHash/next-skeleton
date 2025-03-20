@@ -20,6 +20,12 @@ const reactConfig = {
     "react-hooks/exhaustive-deps": "error",
     ...pluginNext.configs.recommended.rules,
     ...pluginNext.configs["core-web-vitals"].rules,
+    semi: ["error", "never"],
+    quotes: [
+      "error",
+      "single",
+      { avoidEscape: true, allowTemplateLiterals: true },
+    ],
   },
 };
 
