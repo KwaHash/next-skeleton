@@ -1,6 +1,8 @@
 import '@/styles/globals.scss'
-import { env } from '@/lib/config';
-import { Metadata, Viewport } from 'next'
+import { StrictMode } from 'react'
+import { type Metadata, type Viewport } from 'next'
+import { PreloadResources } from '@/components/preload-resources'
+import { env } from '@/lib/config'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -11,7 +13,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1.0,
   viewportFit: 'cover',
-};
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_HOST),
@@ -57,10 +59,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='jp'>
+    <StrictMode>
+      <PreloadResources />
+      <html lang='jp' suppressHydrationWarning>
       <body>
         {children}
       </body>
     </html>
+    </StrictMode>
   )
 }
