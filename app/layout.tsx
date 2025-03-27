@@ -1,5 +1,6 @@
 import '@/styles/globals.scss'
 import { StrictMode } from 'react'
+import HolyLoader from 'holy-loader'
 import { type Metadata, type Viewport } from 'next'
 import { PreloadResources } from '@/components/preload-resources'
 import { env } from '@/lib/config'
@@ -63,6 +64,11 @@ export default function RootLayout({
       <PreloadResources />
       <html lang='jp' suppressHydrationWarning>
       <body>
+        <HolyLoader
+          color="#9333ea"
+          height="1px"
+          easing="linear"
+        />
         {children}
       </body>
     </html>
