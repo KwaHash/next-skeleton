@@ -1,8 +1,10 @@
 import '@/styles/globals.scss'
 import { StrictMode } from 'react'
+import { GoogleTagManager } from '@next/third-parties/google'
 import HolyLoader from 'holy-loader'
 import { type Metadata, type Viewport } from 'next'
-import { PreloadResources } from '@/components/preload-resources'
+import PreloadResources from '@/components/preload-resources'
+import TailwindIndicator from '@/components/tailwind-indicator'
 import { env } from '@/lib/config'
 
 export const viewport: Viewport = {
@@ -70,6 +72,12 @@ export default function RootLayout({
           easing="linear"
         />
         {children}
+
+        {env.NEXT_PUBLIC_APP_ENV === 'production' ? (
+          <GoogleTagManager gtmId={env.NEXT_PUBLIC_GOOGLE_GTM_ID || ''} />
+        ) : (
+          <TailwindIndicator />
+        )}
       </body>
     </html>
     </StrictMode>
