@@ -3,6 +3,7 @@ import { StrictMode } from 'react'
 import { GoogleTagManager } from '@next/third-parties/google'
 import HolyLoader from 'holy-loader'
 import { type Metadata, type Viewport } from 'next'
+import Providers from './providers'
 import PreloadResources from '@/components/preload-resources'
 import ScrollTopButton from '@/components/scroll-top-button'
 import TailwindIndicator from '@/components/tailwind-indicator'
@@ -72,17 +73,18 @@ export default function RootLayout({
           height="1px"
           easing="linear"
         />
+        <Providers>
+          <div className='flex flex-col w-full min-h-screen overflow-y-auto'>
+            {children}
+            <ScrollTopButton />
+          </div>
 
-        <div className='flex flex-col w-full min-h-screen overflow-y-auto'>
-          {children}
-          <ScrollTopButton />
-        </div>
-
-        {env.NEXT_PUBLIC_APP_ENV === 'production' ? (
-          <GoogleTagManager gtmId={env.NEXT_PUBLIC_GOOGLE_GTM_ID || ''} />
-        ) : (
-          <TailwindIndicator />
-        )}
+          {env.NEXT_PUBLIC_APP_ENV === 'production' ? (
+            <GoogleTagManager gtmId={env.NEXT_PUBLIC_GOOGLE_GTM_ID || ''} />
+          ) : (
+            <TailwindIndicator />
+          )}
+        </Providers>        
       </body>
     </html>
     </StrictMode>
