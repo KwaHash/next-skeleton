@@ -4,6 +4,7 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import HolyLoader from 'holy-loader'
 import { type Metadata, type Viewport } from 'next'
 import Providers from './providers'
+import DeleteConfirmationDialog from '@/components/dialog/delete-confirmation-dialog'
 import PreloadResources from '@/components/preload-resources'
 import ScrollTopButton from '@/components/scroll-top-button'
 import TailwindIndicator from '@/components/tailwind-indicator'
@@ -84,6 +85,7 @@ export default function RootLayout({
           ) : (
             <TailwindIndicator />
           )}
+          <DeleteConfirmationDialog />
         </Providers>        
       </body>
     </html>

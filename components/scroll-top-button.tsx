@@ -7,7 +7,7 @@ import { useWindowScroll } from '@/hooks/use-window-scroll'
 const ScrollTopButton = () => {
   const [scroll, scrollTo] = useWindowScroll()
 
-  if (scroll.y < 700) {
+  if (scroll.y < 100) {
     return null
   }
 
@@ -16,10 +16,10 @@ const ScrollTopButton = () => {
       data-test-id="scroll-top-button"
       variant="outline"
       size="icon"
-      className="rounded-full sticky right-4 bottom-4"
+      className="fixed rounded-full left-1/2 bottom-4 transform -translate-x-1/2"
       onClick={() => scrollTo({ top: 0 })}
     >
-      <ArrowUpIcon className="h-5 w-5" />
+      <ArrowUpIcon className="h-5 w-5 animate-pulse" />
     </Button>
   )
 }
