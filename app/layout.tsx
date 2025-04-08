@@ -5,6 +5,7 @@ import HolyLoader from 'holy-loader'
 import { type Metadata, type Viewport } from 'next'
 import Providers from './providers'
 import DeleteConfirmationDialog from '@/components/dialog/delete-confirmation-dialog'
+import Header from '@/components/header'
 import PreloadResources from '@/components/preload-resources'
 import ScrollTopButton from '@/components/scroll-top-button'
 import TailwindIndicator from '@/components/tailwind-indicator'
@@ -76,7 +77,10 @@ export default function RootLayout({
         />
         <Providers>
           <div className='flex flex-col w-full min-h-screen overflow-y-auto'>
-            {children}
+            <Header />
+            <main className='flex flex-col w-full min-h-[calc(100dvh_-_80px)] mt-20'>
+              {children}
+            </main>
             <ScrollTopButton />
           </div>
 
