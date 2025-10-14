@@ -39,13 +39,9 @@ const DeleteConfirmationDialog = () => {
       <DialogContentOverlayBlur>
         <DialogTitle>{title}</DialogTitle>
         <DialogDescription>{description}</DialogDescription>
-        <DialogFooter>
-          <Button variant="destructive" onClick={onDelete}>
-            Delete
-          </Button>
-          <Button variant="outline" onClick={onCancel}>
-            Cancel
-          </Button>
+        <DialogFooter className='flex flex-col gap-2 sm:flex-row sm:gap-0'>
+          <Button variant="destructive" onClick={onDelete}>はい</Button>
+          <Button variant="outline" onClick={onCancel}>いいえ</Button>
         </DialogFooter>
       </DialogContentOverlayBlur>
     </Dialog>

@@ -1,15 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export interface DialogsState {
+  confirmDialog: {
+    isOpen: boolean
+    title: string
+    description: string
+  },
   deleteDialog: {
     isOpen: boolean
     title: string
     description: string
     onDelete: () => void
-  }
+  }  
 }
 
 const initialState: DialogsState = {
+  confirmDialog: {
+    isOpen: false,
+    title: '',
+    description: '',
+  },
   deleteDialog: {
     isOpen: false,
     title: '',
@@ -22,6 +32,27 @@ const dialogsSlice = createSlice({
   name: 'dialogs',
   initialState,
   reducers: {
+    updateConfirmDialog(
+      state,
+      action: {
+        payload: {
+          isOpen?: boolean
+          title?: string
+          description?: string
+        }
+      },
+    ) {
+      if (!action.payload.isOpen) {
+        state.confirmDialog.isOpen = false
+        state.confirmDialog.title = ''
+        state.confirmDialog.description = ''
+      } else {
+        state.confirmDialog = {
+          ...state.confirmDialog,
+          ...action.payload,
+        }
+      }
+    },
     updateDeleteDialog(
       state,
       action: {
@@ -48,5 +79,5 @@ const dialogsSlice = createSlice({
   },
 })
 
-export const { updateDeleteDialog } = dialogsSlice.actions
+export const { updateConfirmDialog, updateDeleteDialog } = dialogsSlice.actions
 export default dialogsSlice.reducer

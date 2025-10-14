@@ -1,15 +1,16 @@
 import '@/styles/globals.scss'
 import { StrictMode } from 'react'
-import { GoogleTagManager } from '@next/third-parties/google'
 import HolyLoader from 'holy-loader'
 import { type Metadata, type Viewport } from 'next'
 import Providers from './providers'
 import DeleteConfirmationDialog from '@/components/dialog/delete-confirmation-dialog'
-import Header from '@/components/header'
+import InfoConfirmationDialog from '@/components/dialog/info-confirmation-dialog'
+import NavBar from '@/components/header/nav-bar'
 import PreloadResources from '@/components/preload-resources'
 import ScrollTopButton from '@/components/scroll-top-button'
 import TailwindIndicator from '@/components/tailwind-indicator'
 import { env } from '@/lib/config'
+import { notoSansJP } from '@/lib/fonts'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -69,26 +70,18 @@ export default function RootLayout({
     <StrictMode>
       <PreloadResources />
       <html lang='jp' suppressHydrationWarning>
-      <body>
-        <HolyLoader
-          color="#9333ea"
-          height="1px"
-          easing="linear"
-        />
+      <body className={notoSansJP.className}>
+        <HolyLoader color="#9333ea" height="1px" easing="linear" />
         <Providers>
-          <div className='flex flex-col w-full min-h-screen overflow-y-auto'>
-            <Header />
+          <div className='flex flex-col w-full min-h-screen overflow-x-hidden overflow-y-auto'>
+            <NavBar />
             <main className='flex flex-col w-full min-h-[calc(100dvh_-_80px)] mt-20'>
               {children}
             </main>
             <ScrollTopButton />
           </div>
-
-          {env.NEXT_PUBLIC_APP_ENV === 'production' ? (
-            <GoogleTagManager gtmId={env.NEXT_PUBLIC_GOOGLE_GTM_ID || ''} />
-          ) : (
-            <TailwindIndicator />
-          )}
+          <TailwindIndicator />
+          <InfoConfirmationDialog />
           <DeleteConfirmationDialog />
         </Providers>        
       </body>

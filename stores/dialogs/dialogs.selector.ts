@@ -7,6 +7,11 @@ export const useDialogs = () => {
   return dialogs
 }
 
+export const useConfirmDialog = () => {
+  const dialogs = useAppSelector(selectDialogs)
+  return dialogs.confirmDialog
+}
+
 export const useDeleteDialog = () => {
   const dialogs = useAppSelector(selectDialogs)
   return dialogs.deleteDialog
